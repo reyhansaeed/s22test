@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jakarta Travel Notes - Test Page</title>
+<!-- Stay22 LMA script for test account A (script id in data-scriptid) -->
+<script id="lma22" data-scriptid="6ad0cca69fd363b14e51115c" src="https://scripts.stay22.com/letmeallez.js" async></script>
+</head>
+<body>
+<h1>Jakarta Travel Notes</h1>
+<p>A short test article with outbound travel links, used to observe how the
+Stay22 script processes links on a publisher page.</p>
+
+<h2>Where to stay</h2>
+<ul>
+  <li><a id="link-booking" href="https://www.booking.com/searchresults.html?ss=Jakarta">Hotels in Jakarta on Booking.com</a></li>
+  <li><a id="link-expedia" href="https://www.expedia.com/Hotel-Search?destination=Jakarta">Hotels in Jakarta on Expedia</a></li>
+  <li><a id="link-hotels" href="https://www.hotels.com/search.do?q-destination=Jakarta">Hotels in Jakarta on Hotels.com</a></li>
+  <li><a id="link-control" href="https://example.com/not-a-travel-link">Control link (not a travel provider)</a></li>
+</ul>
+
+<h2>Observation helper</h2>
+<p>Current href values as seen in the DOM (rewritten by the script if active):</p>
+<pre id="dump">waiting for load...</pre>
+<script>
+function dump() {
+  var out = [];
+  ["link-booking", "link-expedia", "link-hotels", "link-control"].forEach(function (id) {
+    var a = document.getElementById(id);
+    if (a) out.push(id + " => " + a.href);
+  });
+  out.push("Stay22.params = " + JSON.stringify(window.Stay22 && window.Stay22.params || {}));
+  document.getElementById("dump").textContent = out.join("\n");
+}
+window.addEventListener("load", function () { setTimeout(dump, 4000); });
+</script>
+</body>
+</html>
